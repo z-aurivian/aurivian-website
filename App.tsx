@@ -18,33 +18,32 @@ import { NewsItem } from './types';
 // 4. Update the paths below (e.g., heroImage: '/assets/hero.png').
 // ==========================================
 const SAVED_ASSETS = {
-  heroImage: null,      // Example: '/assets/hero.png'
-  missionVideo: null,   // Example: '/assets/mission.mp4'
+  heroImage: '/assets/Hero_Home.png',
+  missionVideo: '/assets/Card1-Build_mission.mp4',
 };
 
 const INITIAL_NEWS: NewsItem[] = [
   {
     id: '1',
     title: 'Medical Insights Intelligence',
-    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    videoUrl: 'https://videos.pexels.com/video-files/3196362/3196362-hd_1280_720_25fps.mp4',
-    // To use local video: videoUrl: '/assets/card1.mp4',
+    imageUrl: '/assets/Hero_Home.png',
+    videoUrl: '/assets/Card1-MedAffairs_home.mp4',
     videoPrompt: 'Two medical science liaisons looking at data and discussing between themselves, dressed professionally (no lab coats), photorealistic, 4k, loopable',
     description: 'Transforms fragmented data into strategic intelligence by integrating multi-source analytics with our sophisticated AI engine.'
   },
   {
     id: '2',
     title: 'KOL Intelligence',
-    imageUrl: 'https://images.unsplash.com/photo-1576267423048-15c0040fec78?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    videoUrl: 'https://videos.pexels.com/video-files/6914945/6914945-hd_1280_720_25fps.mp4',
+    imageUrl: '/assets/Hero_Home.png',
+    videoUrl: '/assets/Card2-KOL_home.mp4',
     videoPrompt: 'A speaker at a medical conference speaking to colleagues in the plenum, professional style, photorealistic, 4k, 8 seconds',
     description: 'Connects the dots and create data-driven engagement lists that prioritize the most influential voices across specific indications and therapeutic categories.'
   },
   {
     id: '3',
     title: 'Congress Intelligence',
-    imageUrl: 'https://picsum.photos/seed/medical_congress/800/600',
-    videoUrl: 'https://videos.pexels.com/video-files/3252273/3252273-hd_1280_720_25fps.mp4',
+    imageUrl: '/assets/Hero_Home.png',
+    videoUrl: '/assets/Card3-Congress_home.mp4',
     videoPrompt: 'A busy hallway with professionals speaking and interacting with each other dressed professionally at a conference, photorealistic, 4k',
     description: 'Eliminate weeks of manual work by using our advanced AI to ingest, analyze, and act on real-time abstracts, presentations, and competitor symposia at major medical events.'
   }
