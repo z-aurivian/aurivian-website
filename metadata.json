@@ -1,0 +1,7 @@
+{
+  "name": "Aurivian",
+  "description": "A replica of the Aurivian website featuring AI-powered search functionality using the Gemini API.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
