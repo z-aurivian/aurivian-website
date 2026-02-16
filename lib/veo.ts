@@ -11,7 +11,7 @@ export const generateVeoVideo = async (prompt: string): Promise<string> => {
   }
 
   // Initialize AI with the key (handled by the environment injection after selection)
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
 
   try {
     let operation = await ai.models.generateVideos({
@@ -35,7 +35,7 @@ export const generateVeoVideo = async (prompt: string): Promise<string> => {
 
     // Fetch the actual video bytes to create a local Blob URL
     // Must append key to the download link
-    const response = await fetch(`${videoUri}&key=${process.env.API_KEY}`);
+    const response = await fetch(`${videoUri}&key=${process.env.API_KEY || ''}`);
     const blob = await response.blob();
     return URL.createObjectURL(blob);
 

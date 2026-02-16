@@ -1,7 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
 
 export const generateImage = async (prompt: string): Promise<string> => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
   
   try {
     const response = await ai.models.generateContent({

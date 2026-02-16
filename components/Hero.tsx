@@ -1,6 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { Upload, Sparkles, Loader2, Download } from 'lucide-react';
-import { generateImage } from '../lib/imagen';
+import React, { useRef } from 'react';
+import { Upload, Download } from 'lucide-react';
 
 interface HeroProps {
   onNavigate: (page: string) => void;
@@ -9,7 +8,6 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ onNavigate, heroImage, onImageUpload }) => {
-  const [isGenerating, setIsGenerating] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleUploadClick = () => {
@@ -21,20 +19,6 @@ const Hero: React.FC<HeroProps> = ({ onNavigate, heroImage, onImageUpload }) => 
     if (file) {
       const url = URL.createObjectURL(file);
       onImageUpload(url);
-    }
-  };
-
-  const handleGenerateClick = async () => {
-    setIsGenerating(true);
-    try {
-        const prompt = "Abstract 3D fluid art representing biomedical data flow, blue and white color palette, clean, scientific, high resolution, soft lighting, minimalist elegance";
-        const imageUrl = await generateImage(prompt);
-        onImageUpload(imageUrl);
-    } catch (e) {
-        console.error("Failed to generate hero image", e);
-        alert("Failed to generate image. Please try again.");
-    } finally {
-        setIsGenerating(false);
     }
   };
 
@@ -75,17 +59,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate, heroImage, onImageUpload }) => 
           
           {/* Controls */}
           <div className="absolute top-4 right-4 z-20 flex gap-2">
-             <button 
-               onClick={handleGenerateClick}
-               disabled={isGenerating}
-               className="bg-white/80 hover:bg-white p-3 rounded-full shadow-sm transition-all duration-200 hover:scale-105 backdrop-blur-md opacity-0 group-hover:opacity-100 disabled:opacity-50"
-               title="Generate AI Image"
-             >
-               {isGenerating ? <Loader2 className="w-5 h-5 text-google-blue animate-spin" /> : <Sparkles className="w-5 h-5 text-google-blue" />}
-               <span className="sr-only">Generate AI Image</span>
-             </button>
-             
-             <button 
+             <button
                onClick={handleUploadClick}
                className="bg-white/80 hover:bg-white p-3 rounded-full shadow-sm transition-all duration-200 hover:scale-105 backdrop-blur-md opacity-0 group-hover:opacity-100"
                title="Upload Image"

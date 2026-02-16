@@ -1,7 +1,6 @@
-import React, { useRef, useState } from 'react';
-import { ArrowUpRight, Upload, Sparkles, Loader2, Download } from 'lucide-react';
+import React, { useRef } from 'react';
+import { ArrowUpRight, Upload, Download } from 'lucide-react';
 import { NewsItem } from '../types';
-import { generateVeoVideo } from '../lib/veo';
 
 interface CardProps {
   item: NewsItem;
@@ -9,7 +8,6 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ item, onUpdate }) => {
-  const [isGenerating, setIsGenerating] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleUploadClick = (e: React.MouseEvent) => {
@@ -27,22 +25,6 @@ const Card: React.FC<CardProps> = ({ item, onUpdate }) => {
     // Reset input
     if (fileInputRef.current) {
         fileInputRef.current.value = '';
-    }
-  };
-
-  const handleGenerateClick = async (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (!item.videoPrompt) return;
-    
-    setIsGenerating(true);
-    try {
-        const videoUrl = await generateVeoVideo(item.videoPrompt);
-        onUpdate(videoUrl, 'video');
-    } catch (e) {
-        console.error("Failed to generate video", e);
-        alert("Failed to generate video. Please try again.");
-    } finally {
-        setIsGenerating(false);
     }
   };
 
@@ -82,16 +64,6 @@ const Card: React.FC<CardProps> = ({ item, onUpdate }) => {
         
         {/* Controls */}
         <div className="absolute top-4 left-4 z-20 flex gap-2">
-             <button 
-               onClick={handleGenerateClick}
-               disabled={isGenerating || !item.videoPrompt}
-               className="bg-white/80 hover:bg-white p-2.5 rounded-full shadow-sm transition-all duration-200 hover:scale-105 backdrop-blur-md opacity-0 group-hover:opacity-100 disabled:opacity-50"
-               title="Generate Video with Veo"
-             >
-               {isGenerating ? <Loader2 className="w-5 h-5 text-google-blue animate-spin" /> : <Sparkles className="w-5 h-5 text-google-blue" />}
-               <span className="sr-only">Generate Media</span>
-             </button>
-
              <button 
                onClick={handleUploadClick}
                className="bg-white/80 hover:bg-white p-2.5 rounded-full shadow-sm transition-all duration-200 hover:scale-105 backdrop-blur-md opacity-0 group-hover:opacity-100"

@@ -1,6 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { Shield, Zap, Eye, Boxes, ArrowRight, Lock, Globe, Upload, Sparkles, Loader2, Download } from 'lucide-react';
-import { generateVeoVideo } from '../lib/veo';
+import React, { useRef } from 'react';
+import { Shield, Zap, Eye, Boxes, ArrowRight, Lock, Globe, Upload, Download } from 'lucide-react';
 
 interface MissionProps {
   videoSrc: string | null;
@@ -36,7 +35,6 @@ const AIFrontierIcon = ({ className }: { className?: string }) => (
 );
 
 const Mission: React.FC<MissionProps> = ({ videoSrc, onVideoUpload }) => {
-  const [isGenerating, setIsGenerating] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleUploadClick = () => {
@@ -48,20 +46,6 @@ const Mission: React.FC<MissionProps> = ({ videoSrc, onVideoUpload }) => {
     if (file) {
       const url = URL.createObjectURL(file);
       onVideoUpload(url);
-    }
-  };
-
-  const handleGenerateClick = async () => {
-    setIsGenerating(true);
-    try {
-        const prompt = "Futuristic digital globe with connecting data nodes, blue and white wireframe style, rotating slowly, cinematic lighting, 4k render, medical technology theme";
-        const videoUrl = await generateVeoVideo(prompt);
-        onVideoUpload(videoUrl);
-    } catch (e) {
-        console.error("Failed to generate mission video", e);
-        alert("Failed to generate video. Please try again.");
-    } finally {
-        setIsGenerating(false);
     }
   };
 
@@ -226,16 +210,6 @@ const Mission: React.FC<MissionProps> = ({ videoSrc, onVideoUpload }) => {
 
                   {/* Controls */}
                   <div className="absolute top-4 right-4 z-20 flex gap-2">
-                     <button 
-                       onClick={handleGenerateClick}
-                       disabled={isGenerating}
-                       className="bg-white/80 hover:bg-white p-3 rounded-full shadow-sm transition-all duration-200 hover:scale-105 backdrop-blur-md opacity-0 group-hover:opacity-100 disabled:opacity-50"
-                       title="Generate AI Video"
-                     >
-                       {isGenerating ? <Loader2 className="w-5 h-5 text-google-blue animate-spin" /> : <Sparkles className="w-5 h-5 text-google-blue" />}
-                       <span className="sr-only">Generate AI Video</span>
-                     </button>
-
                      <button 
                        onClick={handleUploadClick}
                        className="bg-white/80 hover:bg-white p-3 rounded-full shadow-sm transition-all duration-200 hover:scale-105 backdrop-blur-md opacity-0 group-hover:opacity-100"
