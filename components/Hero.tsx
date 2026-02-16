@@ -48,12 +48,12 @@ const Hero: React.FC<HeroProps> = ({ onNavigate, heroImage, onImageUpload }) => 
         </div>
 
         {/* Hero Card Container */}
-        <div className="relative w-full aspect-[4/3] lg:aspect-auto lg:h-full hidden lg:block rounded-2xl overflow-hidden shadow-2xl transition-transform hover:scale-[1.01] duration-700 group bg-gray-100 isolate">
+        <div className="relative w-full aspect-[4/3] lg:aspect-auto lg:h-full hidden lg:block rounded-2xl overflow-hidden transition-transform hover:scale-[1.01] duration-700 group bg-white isolate">
           {heroImage && (
             <img
               src={heroImage}
               alt="Hero visualization"
-              className="w-full h-full object-cover transition-all duration-700"
+              className="w-full h-full object-contain transition-all duration-700"
             />
           )}
           
